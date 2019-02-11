@@ -31,8 +31,8 @@ public class UserMealsUtil {
         mealList.forEach(userMeal -> map.merge(userMeal.getDateTime().toLocalDate(), userMeal.getCalories(), Integer::sum));
 
         mealList.forEach(userMeal -> {
-            if ((TimeUtil.isBetween(userMeal.getDateTime().toLocalTime(), startTime, endTime) && map.get(userMeal.getDateTime().toLocalDate())> caloriesPerDay)) {
-                UserMealWithExceed userMealWithExceed = new UserMealWithExceed(userMeal.getDateTime(), userMeal.getDescription(), userMeal.getCalories(), true);
+            if ((TimeUtil.isBetween(userMeal.getDateTime().toLocalTime(), startTime, endTime))) {
+                UserMealWithExceed userMealWithExceed = new UserMealWithExceed(userMeal.getDateTime(), userMeal.getDescription(), userMeal.getCalories(),map.get(userMeal.getDateTime().toLocalDate())> caloriesPerDay );
                 list.add(userMealWithExceed);
             }
         });
