@@ -16,7 +16,6 @@ import ru.javawebinar.topjava.web.SecurityUtil;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 @Repository
 public class JdbcMealRepositoryImpl implements MealRepository {
 
@@ -50,6 +49,8 @@ public class JdbcMealRepositoryImpl implements MealRepository {
         if (meal.isNew()) {
             Number newKey = insertMeal.executeAndReturnKey(map);
             meal.setId(newKey.intValue());
+        } else if (get(meal.getId(), userId) == null) {
+            return null;
         } else if (namedParameterJdbcTemplate.update(
                 "UPDATE meals SET user_id=:userId, date_time=:dateTime, description=:description, calories=:calories WHERE id=:id", map) == 0) {
             return null;
