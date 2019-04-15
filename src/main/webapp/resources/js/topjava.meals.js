@@ -1,4 +1,5 @@
 // $(document).ready(function () {
+let filterForm;
 $(function () {
     makeEditable({
             ajaxUrl: "ajax/meals/",
@@ -34,3 +35,16 @@ $(function () {
         }
     );
 });
+
+function filter() {
+    debugger;
+    filterForm = $('#filterForm');
+    $.ajax({
+        type: "GET",
+        url: context.ajaxUrl + "filter",
+        data: filterForm.serialize()
+    }).done(function (data) {
+        context.datatableApi.clear().rows.add(data).draw();
+        successNoty("Filtered");
+    });
+}

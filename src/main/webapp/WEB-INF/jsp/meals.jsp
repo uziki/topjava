@@ -13,7 +13,7 @@
     <div class="container">
         <h3 class="text-center"><spring:message code="meal.title"/></h3>
 
-        <form method="post" action="meals/filter">
+        <%--<form method="post" action="meals/filter">
             <dl>
                 <dt><spring:message code="meal.startDate"/>:</dt>
                 <dd><input type="date" name="startDate" value="${param.startDate}"></dd>
@@ -31,7 +31,33 @@
                 <dd><input type="time" name="endTime" value="${param.endTime}"></dd>
             </dl>
             <button type="submit"><spring:message code="meal.filter"/></button>
+        </form>--%>
+
+
+        <form id="filterForm">
+            <div class="col-sm-3 my-1">
+                <label for="startDate" class="col-form-label"><spring:message code="meal.startDate"/></label>
+                <input type="datetime-local" class="form-control" id="startDate" name="startDate"
+                       placeholder="<spring:message code="meal.startDate"/>">
+            </div>
+
+            <div class="col-sm-3 my-1">
+                <label for="endDate" class="col-form-label"><spring:message code="meal.endDate"/></label>
+                <input type="datetime-local" class="form-control" id="endDate" name="endDate"
+                       placeholder="<spring:message code="meal.endDate"/>">
+            </div>
+
+            <%--<div class="form-group">
+                <label for="calories" class="col-form-label"><spring:message code="meal.calories"/></label>
+                <input type="number" class="form-control" id="calories" name="calories"
+                       placeholder="<spring:message code="meal.calories"/>">
+            </div>--%>
         </form>
+        <button type="button" class="btn btn-primary" onclick="filter()">
+            <span class="fa fa-check"></span>
+            <spring:message code="meal.filter"/>
+        </button>
+
 
         <hr>
         <button class="btn btn-primary" onclick="add()">
@@ -84,7 +110,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="description" class="col-form-label"><spring:message code="meal.description"/></label>
+                        <label for="description" class="col-form-label"><spring:message
+                                code="meal.description"/></label>
                         <input type="text" class="form-control" id="description" name="description"
                                placeholder="<spring:message code="meal.description"/>">
                     </div>
