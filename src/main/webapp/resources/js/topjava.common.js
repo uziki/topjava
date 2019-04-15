@@ -5,6 +5,7 @@ function makeEditable(ctx) {
     form = $('#detailsForm');
     $(".delete").click(function () {
         if (confirm('Are you sure?')) {
+            debugger;
             deleteRow($(this).attr("id"));
         }
     });
@@ -24,6 +25,7 @@ function add() {
 }
 
 function deleteRow(id) {
+    debugger;
     $.ajax({
         url: context.ajaxUrl + id,
         type: "DELETE"
@@ -40,6 +42,7 @@ function updateTable() {
 }
 
 function save() {
+    debugger;
     $.ajax({
         type: "POST",
         url: context.ajaxUrl,
